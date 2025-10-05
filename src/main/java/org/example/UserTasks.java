@@ -11,8 +11,8 @@ import java.util.List;
  * @see List
  */
 class UserTasks {
-    private List<String> tasks = new ArrayList<>();
-    private List<String> completedTasks = new ArrayList<>();
+    private final List<String> tasks = new ArrayList<>();
+    private final List<String> completedTasks = new ArrayList<>();
     /**
      * Возвращает список текущих задач пользователя.
      *
@@ -26,5 +26,6 @@ class UserTasks {
      * @return список выполненных задач (может быть пустым)
      */
     public List<String> getCompletedTasks() { return completedTasks; }
+
 
 }
