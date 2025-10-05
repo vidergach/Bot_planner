@@ -21,7 +21,12 @@ public class MessageHandler {
             return startMessage();
         } else if ("/help".equals(userInput)) {
             return helpMessage();
-        } else if(userInput.startsWith("/add")){
+        } else if(userInput.startsWith("/done")){
+            return markTaskDone(userInput);
+        } else if("/dTask".equals(userInput)) {
+            return donedTasks();
+        }
+        else if(userInput.startsWith("/add")){
             return addTask(userInput);
         } else if("/tasks".equals(userInput)){
             return showTasks();
@@ -34,6 +39,34 @@ public class MessageHandler {
                     "Введите /help для просмотра доступных команд.";
         }
     }
+
+    private String markTaskDone(String userInput) {
+        if (userInput.length() <= 6) {
+            return "Упс\uD83D\uDE05, похоже вы " +
+                    "забыли указать задачу после команды /done \n" +
+                    "Например: /done Полить цветы";
+        }
+        String task = userInput.substring(6).trim();
+        if (!tasks.contains(task)) {
+            return "Задача \"" + task + "\" не найдена в списке!";
+        }
+        tasks.remove(task);
+        completedTasks.add(task);
+        return "Задача \"" + task + "\" отмечена выполненной!";
+    }
+
+    private String donedTasks() {
+        if (completedTasks.isEmpty()) {
+            return "Список выполненных задач пуст!";
+        }
+        String compl_tasks = "✅ Вот список выполненных задач:\n";
+        for (int i = 0; i < completedTasks.size(); i++) {
+            compl_tasks += "  " + (i + 1) + ". " + completedTasks.get(i) + " ✔\n";
+        }
+        return compl_tasks;
+    }
+
+
     private String addTask(String userInput) {
         if (userInput.length() <= 5) {
             return "Упс\uD83D\uDE05, похоже вы " +
