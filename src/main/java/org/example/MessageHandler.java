@@ -25,8 +25,8 @@ public class MessageHandler {
             return markTaskDone(userInput);
         } else if("/dTask".equals(userInput)) {
             return donedTasks();
-        }else {
-        } else if(userInput.startsWith("/add")){
+        }
+        else if(userInput.startsWith("/add")){
             return addTask(userInput);
         } else if("/tasks".equals(userInput)){
             return showTasks();
