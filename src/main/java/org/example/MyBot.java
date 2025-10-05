@@ -16,13 +16,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class MyBot extends TelegramLongPollingBot {
     private final MessageHandler mainProcessor = new MessageHandler();
 
-    /**
-     * Обрабатывает входящие обновления от Telegram.
-     * Извлекает текст сообщения, идентификаторы пользователя и чата,
-     * передает обработку MessageHandler.
-     *
-     * @param update объект обновления от Telegram API
-     */
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
@@ -55,24 +48,14 @@ public class MyBot extends TelegramLongPollingBot {
         }
     }
 
-    /**
-     * Возвращает имя бота в Telegram.
-     *
-     * @return имя бота
-     */
     @Override
     public String getBotUsername() {
         return "test_my_super_demo_bot";
     }
 
-    /**
-     * Возвращает токен бота для Telegram API.
-     * Токен берется из переменной окружения BOT_TOKEN.
-     *
-     * @return токен бота
-     */
     @Override
     public String getBotToken() {
         return System.getenv("BOT_TOKEN");
     }
+
 }
